@@ -55,12 +55,12 @@ function setup() {
   });
 }
 
+// Detect which element was clicked:
 function mouseClicked() {
-  console.log(mouseX, mouseY);
-  // console.log(allChems);
+  // console.log(mouseX, mouseY);
   allChems.forEach(function(chem) {
     if((mouseX > chem.xCoord) && (mouseX < chem.xCoord + boxWidth) && (mouseY > chem.yCoord) && (mouseY < chem.yCoord + boxHeight)) {
-      console.log(chem.name);
+      console.log(chem.name, chem.shells, chem.type, chem.config);
     }
   });
 }
@@ -69,6 +69,6 @@ function draw() {
 
 }
 
-$(document).ready(() => {
-
-});
+// $(document).ready(() => {
+//
+// });

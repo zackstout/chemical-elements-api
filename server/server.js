@@ -107,11 +107,30 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
 
       element.image = 'https://en.wikipedia.org/wiki/' + name_real + '#/media/File:' + name_real + '_spectrum_visible.png';
 
+      // if (element.num == 12) {
       wiki.page.data(name_real, {content: true}, function(res) {
         var txt = res.text["*"];
+        var type, config, shells, stp, triple;
         var electronConfig = txt.slice(txt.indexOf("Element category"), txt.indexOf("Electron configuration") + 1000);
-        console.log(electronConfig);
+        var arr = electronConfig.split('<td>');
+        // console.log('1:', arr[1], '2:', arr[2], '3:', arr[3], '4:', arr[4], '5:', arr[5], '6:', arr[6]);
+        // console.log(electronConfig.split('<td>'));
+        if (arr[1]) {
+          // console.log(arr[1]);
+          type = arr[1].slice(arr[1].indexOf('title', 20), arr[1].indexOf('</a>'));
+          config = arr[3].slice(0, arr[3].indexOf("</td>"));
+          shells = arr[4].slice(0, arr[4].indexOf("<"));
+          stp = arr[5].slice(0, arr[5].indexOf("</td>"));
+          element.type = type;
+          element.config = config;
+          element.shells = shells;
+          element.stp = stp;
+        }
+
       });
+      // }
+
+
 
       resu.push(element);
 
