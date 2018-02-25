@@ -40,43 +40,46 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
       var x = arr[12];
       var abund = arr[13];
 
+      // Parsing the data:
       var num_real = num.slice(1, num.indexOf('<'));
       var sym_real = sym.slice(sym.indexOf('>') + 1, sym.indexOf('<'));
-      // console.log(num_real, sym_real);
       var name_real = name.slice(name.indexOf('">') + 2, name.indexOf("</"));
       var group_real = group.slice(group.indexOf('>') + 1, group.indexOf('<'));
       var period_real = period.slice(period.indexOf('>') + 1, period.indexOf('<'));
       var weight_real = weight.slice(weight.indexOf('[') + 1, weight.indexOf(']'));
+      // this one's a bit weird:
       var density_real = density.slice(density.indexOf('">') + 2, density.indexOf('!'));
-      var melt_real = melt;
-      var boil_real = boil;
-      var c_real = c;
-      var x_real = x;
+      var melt_real = melt.slice(melt.indexOf('>') + 1, melt.indexOf('<'));
+      var boil_real = boil.slice(boil.indexOf('>') + 1, boil.indexOf('<'));
+      var c_real = c.slice(c.indexOf('>') + 1, c.indexOf('<'));
+      var x_real = x.slice(x.indexOf('>') + 1, x.indexOf('<'));
       var abund_real = abund;
-      // console.log(melt_real);
+      var origin_real = origin.slice(origin.indexOf(">") + 1, origin.indexOf("</td"));
 
+
+      if (density_real.includes("<")) {
+        density_real = density_real.slice(0, density_real.indexOf("<"));
+      }
+      console.log(origin);
+
+      // console.log(x_real);
       element.num = num_real;
       element.sym = sym_real;
       element.name = name_real;
       element.group = group_real;
-      element.origin = origin;
+      element.origin = origin_real;
       element.period = period_real;
       element.weight = weight_real;
       element.density = density_real;
+      element.melt = melt_real;
+      element.boil = boil_real;
+      element.c = c_real;
+      element.x = x_real;
+      // element.abund = abund_real;
 
       resu.push(element);
 
-
-      // console.log(x.slice(1, x.indexOf('<')));
-
-      // console.log(arr[2].slice(arr[2].indexOf('>'), arr[2].indexOf('<')));
-    }
-
-
-    // if (arr[1]) {
-    //   var num = arr[1].slice(arr[1].indexOf('<'), arr[1].indexOf('>'));
-    //   console.log(num);
-    // }
+    } // END IF STATEMENT
 
   });
 });
