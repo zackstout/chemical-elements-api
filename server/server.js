@@ -44,7 +44,7 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
       // console.log(arr[2]);
 
       var color = sym.slice(sym.indexOf(':') + 1, sym.indexOf('">'));
-      // console.log(color);
+      console.log(color);
 
       // Parsing the data:
       var num_real = num.slice(1, num.indexOf('<'));
