@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
-    "node-wikipedia": "0.0.2"
+    "node-wikipedia": "0.0.2",
+    "website-scraper": "^3.3.2"
   }
 }

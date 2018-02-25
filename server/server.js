@@ -5,6 +5,21 @@ var port = process.env.PORT || 4040;
 var resu = [];
 var wiki = require("node-wikipedia");
 
+// can't get this working either:
+var scrape = require('website-scraper');
+// var options = {
+//   urls: ['https://upload.wikimedia.org/wikipedia/commons/2/2e/Helium_spectrum_visible.png'],
+//   directory: '/downloads',
+// };
+//
+// // with promise
+// scrape(options).then((result) => {
+//     /* some code here */
+//     // console.log(result);
+// }).catch((err) => {
+//     /* some code here */
+//     console.log(err);
+// });
 
 app.use(express.static('server/public'));
 
@@ -107,7 +122,7 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
 
       element.image = 'https://en.wikipedia.org/wiki/' + name_real + '#/media/File:' + name_real + '_spectrum_visible.png';
 
-      // if (element.num == 12) {
+      // if (element.num == 54) {
       wiki.page.data(name_real, {content: true}, function(res) {
         var txt = res.text["*"];
         var type, config, shells, stp, triple;
@@ -125,6 +140,7 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
           element.config = config;
           element.shells = shells;
           element.stp = stp;
+          // console.log(type, config, shells, stp);
         }
 
       });
