@@ -12,6 +12,8 @@ app.get('/stars', function(req, res) {
   res.send(resu);
 });
 
+
+
 wiki.page.data("List_of_chemical_elements", { content: true }, function(response) {
   // console.log(response);
   var txt = response.text["*"];
@@ -44,7 +46,7 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
       // console.log(arr[2]);
 
       var color = sym.slice(sym.indexOf(':') + 1, sym.indexOf('">'));
-      console.log(color);
+      // console.log(color);
 
       // Parsing the data:
       var num_real = num.slice(1, num.indexOf('<'));
@@ -102,6 +104,14 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
       element.color = color;
       // element.abund = abund_real;
       // console.log(melt_real);
+
+      element.image = 'https://en.wikipedia.org/wiki/' + name_real + '#/media/File:' + name_real + '_spectrum_visible.png';
+
+      wiki.page.data(name_real, {content: true}, function(res) {
+        var txt = res.text["*"];
+        var electronConfig = txt.slice(txt.indexOf("Element category"), txt.indexOf("Electron configuration") + 1000);
+        console.log(electronConfig);
+      });
 
       resu.push(element);
 
