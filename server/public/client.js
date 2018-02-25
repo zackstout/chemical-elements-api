@@ -27,12 +27,12 @@ function saveFile(url) {
 
 
 // a second attempt:
-setTimeout(function() {
-
-   url = '//assets.codepen.io/images/codepen-logo.svg';
-  //  downloadFile(url); // UNCOMMENT THIS LINE TO MAKE IT WORK
-
-}, 2000);
+// setTimeout(function() {
+//
+//    url = '//assets.codepen.io/images/codepen-logo.svg';
+//   //  downloadFile(url); // UNCOMMENT THIS LINE TO MAKE IT WORK
+//
+// }, 2000);
 
 // Source: http://pixelscommander.com/en/javascript/javascript-file-download-ignore-content-type/
 window.downloadFile = function (sUrl) {
@@ -97,7 +97,7 @@ function setup() {
       // console.log(r.image);
       var img = '<img src="' + r.image + '">';
       // console.log(img);
-      $('table').append('<tr style=background-color:' + r.color + '>' + '<td>' + r.num + '</td>' + '<td>' + r.name + '</td>' + '<td>' + r.sym + '</td>' + '<td>' + r.origin + '</td>' + '<td>' + r.melt + '</td>' + '<td>' + r.boil + '</td>' + '<td>' + r.c + '</td>' + '<td>' + r.x + '</td>' + '<td>' + r.weight + '</td>' + '<td>' + r.density + '</td>' + '<td>' + r.group + '</td>' + '<td>' + r.period + '</td>' + '<td><img src=' + r.image + '></td>' + '</tr>');
+      $('table').append('<tr style=background-color:' + r.color + '>' + '<td>' + r.num + '</td>' + '<td>' + r.name + '</td>' + '<td>' + r.sym + '</td>' + '<td>' + r.origin + '</td>' + '<td>' + r.melt + '</td>' + '<td>' + r.boil + '</td>' + '<td>' + r.c + '</td>' + '<td>' + r.x + '</td>' + '<td>' + r.weight + '</td>' + '<td>' + r.density + '</td>' + '<td>' + r.group + '</td>' + '<td>' + r.period + '</td>' + '<td><img src="pics/' + r.name + '_spectrum_visible.png' + '"></td>' + '</tr>');
 
       // saveFile(r.image);
       // window.downloadFile(r.image);
