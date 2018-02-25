@@ -40,6 +40,12 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
       var x = arr[12];
       var abund = arr[13];
 
+      // use the color to distribute into categories:
+      // console.log(arr[2]);
+
+      var color = sym.slice(sym.indexOf(':') + 1, sym.indexOf('">'));
+      // console.log(color);
+
       // Parsing the data:
       var num_real = num.slice(1, num.indexOf('<'));
       var sym_real = sym.slice(sym.indexOf('>') + 1, sym.indexOf('<'));
@@ -52,7 +58,7 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
       // var weight_real = weight.slice(weight.indexOf('[') + 1, weight.indexOf(']'));
       // this one's a bit weird:
       var density_real = density.slice(density.indexOf('">') + 2, density.indexOf('!'));
-      var melt_real = melt.slice(melt.indexOf('>') + 1, melt.indexOf('<'));
+      // var melt_real = melt.slice(melt.indexOf('>') + 1, melt.indexOf('<'));
       var boil_real = boil.slice(boil.indexOf('>') + 1, boil.indexOf('<'));
       var c_real = c.slice(c.indexOf('>') + 1, c.indexOf('<'));
       var x_real = x.slice(x.indexOf('>') + 1, x.indexOf('<'));
@@ -62,9 +68,15 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
       // console.log(weight);
 
       if (weight.includes("sorttext")) {
-        weight_real = weight.slice(weight.indexOf('sorttext">') + 1, weight.indexOf("<", weight.indexOf('sorttext">')));
+        weight_real = weight.slice(weight.indexOf('sorttext">') + 10, weight.indexOf("<", weight.indexOf('sorttext">')));
       } else {
         weight_real = weight;
+      }
+
+      if (melt.includes("sorttext")) {
+        melt_real = melt.slice(melt.indexOf('sorttext">') + 10, melt.indexOf("<", melt.indexOf('sorttext">')));
+      } else {
+        melt_real = melt.slice(melt.indexOf('>') + 1, melt.indexOf('<'));
       }
 
       // console.log(weight_real);
@@ -87,7 +99,9 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
       element.boil = boil_real;
       element.c = c_real;
       element.x = x_real;
+      element.color = color;
       // element.abund = abund_real;
+      // console.log(melt_real);
 
       resu.push(element);
 
