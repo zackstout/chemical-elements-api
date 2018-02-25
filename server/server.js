@@ -56,6 +56,7 @@ function updateDB(elem) {
       db.query(queryText, [elem.name, parseInt(elem.num), elem.sym, parseInt(elem.group), elem.origin, elem.weight, elem.density, elem.melt, elem.boil, elem.color, elem.type, elem.config, elem.c, elem.x, elem.shells, elem.stp, parseInt(elem.period)], function (errorMakingQuery, result) {
         // We have received an error or result at this point
         done(); // pool +1
+        
         if (errorMakingQuery) {
           console.log('Error making query', errorMakingQuery, elem);
         } else {
