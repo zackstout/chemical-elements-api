@@ -46,7 +46,10 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
       var name_real = name.slice(name.indexOf('">') + 2, name.indexOf("</"));
       var group_real = group.slice(group.indexOf('>') + 1, group.indexOf('<'));
       var period_real = period.slice(period.indexOf('>') + 1, period.indexOf('<'));
-      var weight_real = weight.slice(weight.indexOf('[') + 1, weight.indexOf(']'));
+
+      var weight_real;
+      //issue with weight: sometimes has '[]', sometimes not:
+      // var weight_real = weight.slice(weight.indexOf('[') + 1, weight.indexOf(']'));
       // this one's a bit weird:
       var density_real = density.slice(density.indexOf('">') + 2, density.indexOf('!'));
       var melt_real = melt.slice(melt.indexOf('>') + 1, melt.indexOf('<'));
@@ -56,11 +59,20 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
       var abund_real = abund;
       var origin_real = origin.slice(origin.indexOf(">") + 1, origin.indexOf("</td"));
 
+      // console.log(weight);
+
+      if (weight.includes("sorttext")) {
+        weight_real = weight.slice(weight.indexOf('sorttext">') + 1, weight.indexOf("<", weight.indexOf('sorttext">')));
+      } else {
+        weight_real = weight;
+      }
+
+      // console.log(weight_real);
 
       if (density_real.includes("<")) {
         density_real = density_real.slice(0, density_real.indexOf("<"));
       }
-      console.log(origin);
+      // console.log(weight);
 
       // console.log(x_real);
       element.num = num_real;
