@@ -16,23 +16,6 @@ var config = {
 
 var pool = new pg.Pool(config);
 
-// can't get this working either:
-var scrape = require('website-scraper');
-// var options = {
-//   urls: ['https://upload.wikimedia.org/wikipedia/commons/2/2e/Helium_spectrum_visible.png'],
-//   directory: '/downloads',
-// };
-//
-// // with promise
-// scrape(options).then((result) => {
-//     /* some code here */
-//     // console.log(result);
-// }).catch((err) => {
-//     /* some code here */
-//     console.log(err);
-// });
-
-
 function updateDB(elem) {
   // console.log(elem);
   pool.connect(function (errorConnectingToDb, db, done) {
@@ -56,7 +39,7 @@ function updateDB(elem) {
       db.query(queryText, [elem.name, parseInt(elem.num), elem.sym, parseInt(elem.group), elem.origin, elem.weight, elem.density, elem.melt, elem.boil, elem.color, elem.type, elem.config, elem.c, elem.x, elem.shells, elem.stp, parseInt(elem.period)], function (errorMakingQuery, result) {
         // We have received an error or result at this point
         done(); // pool +1
-        
+
         if (errorMakingQuery) {
           console.log('Error making query', errorMakingQuery, elem);
         } else {
