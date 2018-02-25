@@ -5,6 +5,17 @@ var port = process.env.PORT || 4040;
 var resu = [];
 var wiki = require("node-wikipedia");
 
+var pg = require('pg');
+var config = {
+  database: 'elements', // the name of the database
+  host: 'localhost', // where is your database?
+  port: 5432, // the port number for you database, 5432 is the default
+  max: 10, // how many connections at one time
+  idleTimeoutMillis: 30000 // Close idle connections to db after
+};
+
+var pool = new pg.Pool(config);
+
 // can't get this working either:
 var scrape = require('website-scraper');
 // var options = {
@@ -20,6 +31,40 @@ var scrape = require('website-scraper');
 //     /* some code here */
 //     console.log(err);
 // });
+
+
+function updateDB(elem) {
+  // console.log(elem);
+  pool.connect(function (errorConnectingToDb, db, done) {
+    if (errorConnectingToDb) {
+      // There was an error and no connection was made
+      console.log('Error connecting', errorConnectingToDb);
+    } else {
+      // We connected to the db!!!!! pool -1
+      // console.log(star, "HI THERE");
+      var queryText = 'INSERT INTO "elems5" ("el_name", "num", "sym", "group_num", "origin", "weight", "density", "melt", "boil", "color", "type", "config", "c", "x", "shells", "stp", "period") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);';
+
+      if (isNaN(elem.num) || elem.num == '') {
+        elem.num = -1;
+      }
+      if (isNaN(elem.group) || elem.group == '') {
+        elem.group = -1;
+      }
+      if (isNaN(elem.period) || elem.period == '') {
+        elem.period = -1;
+      }
+      db.query(queryText, [elem.name, parseInt(elem.num), elem.sym, parseInt(elem.group), elem.origin, elem.weight, elem.density, elem.melt, elem.boil, elem.color, elem.type, elem.config, elem.c, elem.x, elem.shells, elem.stp, parseInt(elem.period)], function (errorMakingQuery, result) {
+        // We have received an error or result at this point
+        done(); // pool +1
+        if (errorMakingQuery) {
+          console.log('Error making query', errorMakingQuery, elem);
+        } else {
+          // Send back success!
+        }
+      }); // END QUERY
+    }
+  }); // END POOL
+}
 
 app.use(express.static('server/public'));
 
@@ -140,6 +185,9 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
           element.config = config;
           element.shells = shells;
           element.stp = stp;
+
+          updateDB(element);
+
           // console.log(type, config, shells, stp);
         }
 
@@ -147,12 +195,11 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
       // }
 
 
-
       resu.push(element);
 
     } // END IF STATEMENT
 
-  });
+  }); // END FOREACH STATEMENT
 });
 
 // Start listening for requests on a specific port

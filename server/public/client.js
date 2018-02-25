@@ -95,7 +95,7 @@ function setup() {
     for (var i=0; i < res.length; i++) {
       var r = res[i];
       // console.log(r.image);
-      var img = '<img src="' + r.image + '">';
+      // var img = '<img src="' + r.image + '">';
       // console.log(img);
       $('table').append('<tr style=background-color:' + r.color + '>' + '<td>' + r.num + '</td>' + '<td>' + r.name + '</td>' + '<td>' + r.sym + '</td>' + '<td>' + r.origin + '</td>' + '<td>' + r.melt + '</td>' + '<td>' + r.boil + '</td>' + '<td>' + r.c + '</td>' + '<td>' + r.x + '</td>' + '<td>' + r.weight + '</td>' + '<td>' + r.density + '</td>' + '<td>' + r.group + '</td>' + '<td>' + r.period + '</td>' + '<td><img src="pics/' + r.name + '_spectrum_visible.png' + '"></td>' + '</tr>');
 
