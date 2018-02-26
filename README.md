@@ -1,9 +1,10 @@
 # Chemical Element Facts
-Building an API to deliver facts about chemical elements with an interactive user interface to sharpen my skills with node-wikipedia. Should probably bring in p5 to help with click-listeners on the canvas.
+Building an API to deliver facts about chemical elements with an interactive user interface to sharpen my skills with node-wikipedia.
 
 ## Built With:
 - node-wikipedia
 - jQuery
+- p5.js
 
 ## Screenshot:
 Reproducing the table of elements:

@@ -56,6 +56,37 @@ app.get('/stars', function(req, res) {
   res.send(resu);
 });
 
+app.get('/elems/:num', function(req, res) {
+  console.log(req.params.num);
+
+  pool.connect(function (errorConnectingToDb, db, done) {
+    if (errorConnectingToDb) {
+      // There was an error and no connection was made
+      console.log('Error connecting', errorConnectingToDb);
+    } else {
+      // We connected to the db!!!!! pool -1
+      // console.log(star, "HI THERE");
+      var queryText = 'SELECT * FROM "elems5" WHERE "el_name" = $1;';
+
+      db.query(queryText, [req.params.num], function (errorMakingQuery, result) {
+        // We have received an error or result at this point
+        done(); // pool +1
+
+        if (errorMakingQuery) {
+          console.log('Error making query', errorMakingQuery);
+        } else {
+          // Send back success!
+          res.send(result.rows[1]);
+        }
+      }); // END QUERY
+    }
+  }); // END POOL
+
+  // don't forget to send something back!
+
+  // res.sendStatus(201);
+});
+
 
 
 wiki.page.data("List_of_chemical_elements", { content: true }, function(response) {
@@ -170,7 +201,7 @@ wiki.page.data("List_of_chemical_elements", { content: true }, function(response
           element.shells = shells;
           element.stp = stp;
 
-          updateDB(element);
+          // updateDB(element);
 
           // console.log(type, config, shells, stp);
         }
