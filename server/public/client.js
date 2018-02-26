@@ -32,89 +32,90 @@ function setup() {
     for (var i=0; i < res.length; i++) {
       var r = res[i];
 
+      $.ajax({
+        type: 'get',
+        url: '/elems/' + r.name
+      }).done((r) => {
+        console.log(res);
+        if (r.num != 80) {
+          var shellNums = r.shells.split(', ');
+          $('#orbitals').append('<p id="' + r.num + '"></p>');
+
+          shellNums.forEach((n, index) => {
+            var int = parseInt(n);
+            // console.log(int, index);
+
+            switch(index) {
+              case 0:
+              // console.log(can1BoxWidth);
+              ctx.fillStyle = 'red';
+              ctx.fillRect(0, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+              ctx.fillStyle = 'black';
+              ctx.font = '22px Arial';
+              ctx.fillText(n, 0, (r.num - 1) * can1BoxHeight);
+              break;
+
+              case 1:
+              // while (int > 0) {
+              //   $('#orbitals').append()
+              // }
+              ctx.fillStyle = 'orange';
+              ctx.fillRect(can1BoxWidth, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+              ctx.fillStyle = 'black';
+              ctx.font = '22px Arial';
+              ctx.fillText(n, can1BoxWidth, (r.num - 1) * can1BoxHeight);
+              // console.log(1);
+              break;
+
+              case 2:
+              ctx.fillStyle = 'yellow';
+              ctx.fillRect(can1BoxWidth * 2, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+              ctx.fillStyle = 'black';
+              ctx.font = '22px Arial';
+              ctx.fillText(n, can1BoxWidth * 2, (r.num - 1) * can1BoxHeight);
+              break;
+
+              case 3:
+              ctx.fillStyle = 'green';
+              ctx.fillRect(can1BoxWidth * 3, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+              ctx.fillStyle = 'black';
+              ctx.font = '22px Arial';
+              ctx.fillText(n, can1BoxWidth * 3, (r.num - 1) * can1BoxHeight);
+              break;
+
+              case 4:
+              ctx.fillStyle = 'blue';
+              ctx.fillRect(can1BoxWidth * 4, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+              ctx.fillStyle = 'black';
+              ctx.font = '22px Arial';
+              ctx.fillText(n, can1BoxWidth *4, (r.num - 1) * can1BoxHeight);
+              break;
+
+              case 5:
+              ctx.fillStyle = 'violet';
+              ctx.fillRect(can1BoxWidth *5, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+              ctx.fillStyle = 'black';
+              ctx.font = '22px Arial';
+              ctx.fillText(n, can1BoxWidth*5, (r.num - 1) * can1BoxHeight);
+              break;
+
+              case 6:
+              ctx.fillStyle = 'indigo';
+              ctx.fillRect(can1BoxWidth*6, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+              ctx.fillStyle = 'black';
+              ctx.font = '22px Arial';
+              ctx.fillText(n, can1BoxWidth*6, (r.num - 1) * can1BoxHeight);            break;
+            }
+          });
+          // $('#orbitals').append('<p>' + r.shells + '</p>');
+        }
+      })
+
 
       // $('table').append('<tr style=background-color:' + r.color + '>' + '<td>' + r.num + '</td>' + '<td>' + r.name + '</td>' + '<td>' + r.sym + '</td>' + '<td>' + r.origin + '</td>' + '<td>' + r.melt + '</td>' + '<td>' + r.boil + '</td>' + '<td>' + r.c + '</td>' + '<td>' + r.x + '</td>' + '<td>' + r.weight + '</td>' + '<td>' + r.density + '</td>' + '<td>' + r.group + '</td>' + '<td>' + r.period + '</td>' + '<td><img src="pics/' + r.name + '_spectrum_visible.png' + '"></td>' + '</tr>');
 
 
-
-
-
       // how do we do this without concatenation again...?:
-      // if (r.num != 80) {
-      //   var shellNums = r.shells.split(', ');
-      //   $('#orbitals').append('<p id="' + r.num + '"></p>');
-      //
-      //   shellNums.forEach((n, index) => {
-      //     var int = parseInt(n);
-      //     // console.log(int, index);
-      //
-      //     switch(index) {
-      //       case 0:
-      //       // console.log(can1BoxWidth);
-      //       ctx.fillStyle = 'red';
-      //       ctx.fillRect(0, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
-      //       ctx.fillStyle = 'black';
-      //       ctx.font = '22px Arial';
-      //       ctx.fillText(n, 0, (r.num - 1) * can1BoxHeight);
-      //       break;
-      //
-      //       case 1:
-      //       // while (int > 0) {
-      //       //   $('#orbitals').append()
-      //       // }
-      //       ctx.fillStyle = 'orange';
-      //       ctx.fillRect(can1BoxWidth, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
-      //       ctx.fillStyle = 'black';
-      //       ctx.font = '22px Arial';
-      //       ctx.fillText(n, can1BoxWidth, (r.num - 1) * can1BoxHeight);
-      //       // console.log(1);
-      //       break;
-      //
-      //       case 2:
-      //       ctx.fillStyle = 'yellow';
-      //       ctx.fillRect(can1BoxWidth * 2, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
-      //       ctx.fillStyle = 'black';
-      //       ctx.font = '22px Arial';
-      //       ctx.fillText(n, can1BoxWidth * 2, (r.num - 1) * can1BoxHeight);
-      //       break;
-      //
-      //       case 3:
-      //       ctx.fillStyle = 'green';
-      //       ctx.fillRect(can1BoxWidth * 3, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
-      //       ctx.fillStyle = 'black';
-      //       ctx.font = '22px Arial';
-      //       ctx.fillText(n, can1BoxWidth * 3, (r.num - 1) * can1BoxHeight);
-      //       break;
-      //
-      //       case 4:
-      //       ctx.fillStyle = 'blue';
-      //       ctx.fillRect(can1BoxWidth * 4, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
-      //       ctx.fillStyle = 'black';
-      //       ctx.font = '22px Arial';
-      //       ctx.fillText(n, can1BoxWidth *4, (r.num - 1) * can1BoxHeight);
-      //       break;
-      //
-      //       case 5:
-      //       ctx.fillStyle = 'violet';
-      //       ctx.fillRect(can1BoxWidth *5, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
-      //       ctx.fillStyle = 'black';
-      //       ctx.font = '22px Arial';
-      //       ctx.fillText(n, can1BoxWidth*5, (r.num - 1) * can1BoxHeight);
-      //       break;
-      //
-      //       case 6:
-      //       ctx.fillStyle = 'indigo';
-      //       ctx.fillRect(can1BoxWidth*6, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
-      //       ctx.fillStyle = 'black';
-      //       ctx.font = '22px Arial';
-      //       ctx.fillText(n, can1BoxWidth*6, (r.num - 1) * can1BoxHeight);            break;
-      //     }
-      //   });
-      //   // $('#orbitals').append('<p>' + r.shells + '</p>');
-      // }
-
-
-
 
 
       r.xCoord = (r.group - 1) * boxWidth;
@@ -143,7 +144,10 @@ function setup() {
 
       allChems.push(r);
     }
-  });
+  }); // END DONE FUNCTION;
+
+
+
 }
 
 // Detect which element was clicked:
