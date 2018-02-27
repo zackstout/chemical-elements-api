@@ -32,18 +32,20 @@ function setup() {
     // console.log(res);
     for (var i=0; i < res.length; i++) {
       var r = res[i];
+      // console.log(result);
 
       // if (r.num != 80) {
         $.ajax({
           type: 'get',
           url: '/elems/' + r.name
-        }).done((r) => {
-          // console.log(res);
+        }).done((res2) => {
+          // console.log(res2);
           // console.log(r);
-          if (r.num != 80 && r) {
-            var shellNums = r.shells.split(', ');
-            $('#orbitals').append('<p id="' + r.num + '"></p>');
-            console.log(shellNums);
+
+          if (res2.num != 80 && res2) {
+            var shellNums = res2.shells.split(', ');
+            $('#orbitals').append('<p id="' + res2.num + '"></p>');
+            // console.log(shellNums);
 
             shellNums.forEach((n, index) => {
               var int = parseInt(n);
@@ -53,10 +55,10 @@ function setup() {
                 case 0:
                 // console.log(can1BoxWidth);
                 ctx.fillStyle = 'red';
-                ctx.fillRect(0, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+                ctx.fillRect(0, (res2.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
                 ctx.fillStyle = 'black';
                 ctx.font = '22px Arial';
-                ctx.fillText(n, 0, (r.num - 1) * can1BoxHeight);
+                ctx.fillText(n, 0, (res2.num - 1) * can1BoxHeight);
                 break;
 
                 case 1:
@@ -64,65 +66,64 @@ function setup() {
                 //   $('#orbitals').append()
                 // }
                 ctx.fillStyle = 'orange';
-                ctx.fillRect(can1BoxWidth, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+                ctx.fillRect(can1BoxWidth, (res2.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
                 ctx.fillStyle = 'black';
                 ctx.font = '22px Arial';
-                ctx.fillText(n, can1BoxWidth, (r.num - 1) * can1BoxHeight);
+                ctx.fillText(n, can1BoxWidth, (res2.num - 1) * can1BoxHeight);
                 // console.log(1);
                 break;
 
                 case 2:
                 ctx.fillStyle = 'yellow';
-                ctx.fillRect(can1BoxWidth * 2, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+                ctx.fillRect(can1BoxWidth * 2, (res2.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
                 ctx.fillStyle = 'black';
                 ctx.font = '22px Arial';
-                ctx.fillText(n, can1BoxWidth * 2, (r.num - 1) * can1BoxHeight);
+                ctx.fillText(n, can1BoxWidth * 2, (res2.num - 1) * can1BoxHeight);
                 break;
 
                 case 3:
                 ctx.fillStyle = 'green';
-                ctx.fillRect(can1BoxWidth * 3, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+                ctx.fillRect(can1BoxWidth * 3, (res2.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
                 ctx.fillStyle = 'black';
                 ctx.font = '22px Arial';
-                ctx.fillText(n, can1BoxWidth * 3, (r.num - 1) * can1BoxHeight);
+                ctx.fillText(n, can1BoxWidth * 3, (res2.num - 1) * can1BoxHeight);
                 break;
 
                 case 4:
                 ctx.fillStyle = 'blue';
-                ctx.fillRect(can1BoxWidth * 4, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+                ctx.fillRect(can1BoxWidth * 4, (res2.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
                 ctx.fillStyle = 'black';
                 ctx.font = '22px Arial';
-                ctx.fillText(n, can1BoxWidth *4, (r.num - 1) * can1BoxHeight);
+                ctx.fillText(n, can1BoxWidth *4, (res2.num - 1) * can1BoxHeight);
                 break;
 
                 case 5:
                 ctx.fillStyle = 'violet';
-                ctx.fillRect(can1BoxWidth *5, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+                ctx.fillRect(can1BoxWidth *5, (res2.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
                 ctx.fillStyle = 'black';
                 ctx.font = '22px Arial';
-                ctx.fillText(n, can1BoxWidth*5, (r.num - 1) * can1BoxHeight);
+                ctx.fillText(n, can1BoxWidth*5, (res2.num - 1) * can1BoxHeight);
                 break;
 
                 case 6:
                 ctx.fillStyle = 'indigo';
-                ctx.fillRect(can1BoxWidth*6, (r.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
+                ctx.fillRect(can1BoxWidth*6, (res2.num - 1) * can1BoxHeight, can1BoxWidth, can1BoxHeight);
                 ctx.fillStyle = 'black';
                 ctx.font = '22px Arial';
-                ctx.fillText(n, can1BoxWidth*6, (r.num - 1) * can1BoxHeight);            break;
+                ctx.fillText(n, can1BoxWidth*6, (res2.num - 1) * can1BoxHeight);
+                break;
               }
             });
             // $('#orbitals').append('<p>' + r.shells + '</p>');
           }
-        })
+        });
       // }
-
 
 
       // $('table').append('<tr style=background-color:' + r.color + '>' + '<td>' + r.num + '</td>' + '<td>' + r.name + '</td>' + '<td>' + r.sym + '</td>' + '<td>' + r.origin + '</td>' + '<td>' + r.melt + '</td>' + '<td>' + r.boil + '</td>' + '<td>' + r.c + '</td>' + '<td>' + r.x + '</td>' + '<td>' + r.weight + '</td>' + '<td>' + r.density + '</td>' + '<td>' + r.group + '</td>' + '<td>' + r.period + '</td>' + '<td><img src="pics/' + r.name + '_spectrum_visible.png' + '"></td>' + '</tr>');
 
 
       // how do we do this without concatenation again...?:
-
 
 
       // console.log(r.group, r.period, r.num);
@@ -145,8 +146,7 @@ function setup() {
       // handle the 2 weird rows:
       } else {
 
-        // console.log(r);
-
+        console.log(r);
 
         if (r.period == 6) {
           var col = color(r.color);
@@ -209,8 +209,6 @@ function setup() {
 
 // Detect which element was clicked:
 function mouseClicked() {
-
-
 
   // console.log(mouseX, mouseY);
   allChems.forEach(function(chem) {
