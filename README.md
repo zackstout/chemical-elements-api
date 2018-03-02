@@ -14,8 +14,10 @@ Reproducing the Wikipedia table:
 ![screen shot 2018-02-25 at 1 03 04 pm](https://user-images.githubusercontent.com/29472568/36645317-64fdcb10-1a2c-11e8-841a-46dcbbb7f3b4.png)
 
 ## Completed Features:
-[x] Storing scraped data from Wikipedia in a database.
-[x] Clicking on an element reveals facts about it.
+- [x] Storing scraped data from Wikipedia in a database.
+- [x] Clicking on an element reveals facts about it.
 
 ## Stretch Goals:
-[ ] Figure out how to download images to local drive based on URL
+- [] Figure out how to download images to local drive based on URL.
+- [] Bring in more facts from elements' individual Wikipedia pages.
+- [] Let users drag elements together to learn about their interactions.
