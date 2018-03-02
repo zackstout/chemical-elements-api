@@ -18,6 +18,7 @@ Reproducing the Wikipedia table:
 - [x] Clicking on an element reveals facts about it.
 
 ## Stretch Goals:
-- [] Figure out how to download images to local drive based on URL.
-- [] Bring in more facts from elements' individual Wikipedia pages.
-- [] Let users drag elements together to learn about their interactions.
+- [ ] Figure out how to download images to local drive based on URL.
+- [ ] Bring in more facts from elements' individual Wikipedia pages.
+- [ ] Let users drag elements together to learn about their interactions.
+- [ ] Illustrate the electron orbitals of each element.
