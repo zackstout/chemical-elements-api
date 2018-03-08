@@ -5,6 +5,7 @@ Building an API to deliver facts about chemical elements with an interactive use
 - node-wikipedia
 - jQuery
 - p5.js
+- PostgreSQL
 
 ## Screenshot:
 Reproducing the table of elements:
